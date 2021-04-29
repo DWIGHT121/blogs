@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block title %}
+{% endblock %}
+
+{% block body %}
+
+<h1>{{ article.topic }}</h1>
+<p>{{ article.start_text }}</p>
+<p><img src="{{ article.image.url }}" alt=""></p>
+<p>{{ article.field1|linebreaks }}</p>
+
+{% for p in photos %}
+<p> <img src="{{ p.images.url }}" alt=""></p>
+{% endfor %}
+
+<p>{{ article.field2|linebreaks }}</p>
+
+
+
+{% endblock %}
+
+
+{% block side %}
+{% for a in full_list %}
+<!-- 
+<h6 id = "side_head">{{ a.topic}}</h6>
+<img src= "{{ a.image.url }}" alt="" class = "list_img_small">
+
+<div class = "side_detail">{{ a.start_text }}</div>
+</a>-->
+
+
+
+<div class="w3-card w3-margin" style = "border-color:black">
+    <div class="w3-container w3-padding">
+        <a href="{% url 'detail' id=a.id %}" id = "submit_button">  <h4>{{ a.topic }}</h4> </a>
+    </div>
+    <ul class="w3-ul">
+      <li class="w3-padding-16">
+        <a href="{% url 'detail' id=a.id %}" id = "submit_button"><img src="{{ a.image.url }}" alt="Image" class="w3-left w3-margin-right" style="width:50px"> </a>
+        <span class="w3-large">Lorem</span><br>
+        <span>{{ a.start_text }}</span>
+      </li>
+       
+        
+       
+    </ul>
+  </div>
+
+  {% endfor %}
+  <a href="{% url 'home' %}">See all</a>   
+{% endblock %}
